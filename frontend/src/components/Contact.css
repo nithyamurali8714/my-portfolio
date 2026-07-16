@@ -1,0 +1,60 @@
+.contact-intro {
+  color: var(--ink-dim);
+  max-width: 50ch;
+  margin-bottom: 32px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 520px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+
+.form-row input,
+.form-row textarea {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: var(--ink);
+  font-size: 15px;
+  resize: vertical;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+  border-color: var(--mint);
+  outline: none;
+}
+
+.contact-form button {
+  align-self: flex-start;
+  border: none;
+  cursor: pointer;
+}
+
+.form-status {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.form-status--ok {
+  color: var(--mint);
+}
+
+.form-status--err {
+  color: #f2795a;
+}

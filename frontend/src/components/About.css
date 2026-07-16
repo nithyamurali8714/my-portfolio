@@ -1,0 +1,22 @@
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.about-heading {
+  font-size: 28px;
+  line-height: 1.3;
+}
+
+.about-body {
+  color: var(--ink-dim);
+  font-size: 16px;
+}
+
+@media (max-width: 780px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
