@@ -1,7 +1,6 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 import "./Contact.css";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 export default function Contact() {
   const [form, setForm] = useState({
@@ -24,15 +23,16 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      const res = await fetch(`${API_URL}/api/messages`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      await emailjs.send(
+        "service_pk4o7mm",
+        "template_flqjiaj",
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
         },
-        body: JSON.stringify(form),
-      });
-
-      if (!res.ok) throw new Error("Request Failed");
+        "FcWkw8D9i4zThfLBh"
+      );
 
       setStatus("sent");
 
@@ -41,7 +41,8 @@ export default function Contact() {
         email: "",
         message: "",
       });
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setStatus("error");
     }
   };
@@ -49,7 +50,6 @@ export default function Contact() {
   return (
     <section id="contact">
       <div className="wrap">
-
         <div className="eyebrow">
           07 · CONTACT
         </div>
@@ -66,7 +66,6 @@ export default function Contact() {
         </p>
 
         <div className="contact-info">
-
           <p>
             <strong>Email:</strong>{" "}
             <a href="mailto:nithyamurali8714@gmail.com">
@@ -103,14 +102,9 @@ export default function Contact() {
           <p>
             <strong>Location:</strong> Kollam, Kerala, India
           </p>
-
         </div>
 
-        <form
-          className="contact-form"
-          onSubmit={handleSubmit}
-        >
-
+        <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <label>Name</label>
 
@@ -155,9 +149,7 @@ export default function Contact() {
             className="btn btn-primary"
             disabled={status === "sending"}
           >
-            {status === "sending"
-              ? "Sending..."
-              : "Send Message"}
+            {status === "sending" ? "Sending..." : "Send Message"}
           </button>
 
           {status === "sent" && (
@@ -171,9 +163,7 @@ export default function Contact() {
               ❌ Unable to send your message. Please try again later.
             </p>
           )}
-
         </form>
-
       </div>
     </section>
   );
